@@ -1,0 +1,14 @@
+{
+  "name": "volume",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/app.js"
+  },
+  "author": "ALlen",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
