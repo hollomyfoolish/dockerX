@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app1:
+    image: hollomyfoolish/node-app:1
+    container_name: app1
+    ports:
+      - "3003"
+    networks: 
+      - default
+      - app_net
+  app2:
+    image: hollomyfoolish/node-app:2
+    container_name: app2
+    ports:
+      - "3003"
+    networks: 
+      - default
+      - app_net
+networks: 
+  app_net:
+    external: true
