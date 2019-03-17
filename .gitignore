@@ -32,3 +32,6 @@ uploads/
 ### node ###
 node_modules/
 dist/
+
+#### go ####
+/pkg
