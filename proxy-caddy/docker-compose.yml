@@ -1,0 +1,20 @@
+# run cmd [ docker network create app_net ] before docker-compose up
+version: '3'
+services:
+  csm-proxy:
+    image: abiosoft/caddy:0.11.0-no-stats
+    ports:
+        # - "80:80"
+        - "443:443"
+        - "9877:9877"
+        - "6589:6589"
+    # restart: on-failure
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:9877/health"]
+    #   interval: 10s
+    #   timeout: 10s
+    #   retries: 5
+    volumes:
+      - ./Caddyfile:/etc/csm/conf/Caddyfile
+      - ./ssl/:/etc/csm/conf/ssl/
+    entrypoint: caddy -conf /etc/csm/conf/Caddyfile

@@ -1,0 +1,33 @@
+# run cmd [ docker network create app_net ] before docker-compose up
+version: '3.1'
+services:
+  app:
+    image: node:8
+    ports:
+      - 3004:3004
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_root_password
+      - db_password
+    volumes:
+      - ./app:/opt/app/
+    entrypoint: node /opt/app/src/app.js
+  proxy:
+    image: abiosoft/caddy:0.11.0-no-stats
+    ports:
+        - "443:443"
+        - "9877:9877"
+        - "6589:6589"
+    volumes:
+      - ./proxy-caddy/Caddyfile:/etc/csm/conf/Caddyfile
+      - ./proxy-caddy/ssl/:/etc/csm/conf/ssl/
+    entrypoint: caddy -conf /etc/csm/conf/Caddyfile
+secrets:
+   db_password:
+     file: db_password.txt
+   db_root_password:
+     file: db_root_password.txt

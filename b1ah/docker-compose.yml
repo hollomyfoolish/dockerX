@@ -1,0 +1,6 @@
+# run cmd [ docker network create app_net ] before docker-compose up
+version: '3'
+services:
+  b1ah:
+    image: docker.wdf.sap.corp:51271/sbo/tomcat-with-python2:8.5.40
+    entrypoint: sleep 100m

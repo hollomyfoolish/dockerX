@@ -1,0 +1,7 @@
+version: '3'
+services:
+  go-test:
+    environment:
+    - PGADMIN_DEFAULT_EMAIL=admin@sap.com
+    - PGADMIN_DEFAULT_PASSWORD=Initial0
+    image: hollomyfoolish/gotest:1

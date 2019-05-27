@@ -1,0 +1,9 @@
+app2.smes.sap.corp:5589 {
+	tls off
+	proxy / https://app1.node.smes.sap.corp:443 {
+		transparent
+		insecure_skip_verify
+		header_upstream sap_b1_extAddress 1
+	}
+	log stdout
+}

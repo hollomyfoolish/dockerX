@@ -1,0 +1,14 @@
+localhost:9877 {
+	status 200 /health
+}
+
+
+
+app2.smes.sap.corp:443 {
+	tls   /etc/csm/conf/ssl/csm.crt /etc/csm/conf/ssl/csm.key
+	proxy / http://10.58.81.6:8880 {
+		transparent
+		insecure_skip_verify
+		header_upstream sap_b1_extAddress 1
+	}
+}

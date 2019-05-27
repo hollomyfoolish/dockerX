@@ -1,0 +1,13 @@
+# run cmd [ docker network create app_net ] before docker-compose up
+version: '3'
+services:
+  proxy:
+    image: abiosoft/caddy:0.11.0-no-stats
+    ports:
+        - "4433:4433"
+        - "8877:8877"
+        - "5589:5589"
+    volumes:
+      - ./Caddyfile:/etc/csm/conf/Caddyfile
+      - ./ssl/:/etc/csm/conf/ssl/
+    entrypoint: caddy -conf /etc/csm/conf/Caddyfile
