@@ -2,7 +2,13 @@ localhost:9877 {
 	status 200 /health
 }
 
-
+app1.node.smes.sap.corp:443 {
+	tls   /etc/csm/conf/ssl/csm.crt /etc/csm/conf/ssl/csm.key
+	proxy / http://www.baidu.com {
+		transparent
+		insecure_skip_verify
+	}
+}
 
 app2.smes.sap.corp:443 {
 	tls   /etc/csm/conf/ssl/csm.crt /etc/csm/conf/ssl/csm.key
